@@ -1,18 +1,43 @@
-var enterLetter = document.getElementById("enterLetter");
+var wordDisplay = document.getElementById("wordDisplay");
+var guessWord = document.getElementById("guessWord");
 var submitLetter = document.getElementById("submitLetter");
 
 var numGuesses = 0;
 
-var wordBank = ["AQUARIUM", "CONVERTIBLE", "COMPUTER", "DYNAMITE", "KEYBOARD", "MAGAZINE", "SHELL", "VEHICLE", "HIGHWAY", "PROGRAM"];
+var wordBank = ["mouse", "software", "computer", "hardware", "keyboard", "battery", "screen", "desktop", "display", "program"];
 
-var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+
+var currentWord = wordBank[Math.floor(Math.random() * 10)];
+console.log(currentWord);
+
+for (var i = 0; i < currentWord.length; i++) {
+
+
+  var blanks = currentWord.replace(currentWord[i], "_ ");
+
+
+  wordDisplay.innerHTML = blanks;
+
+
+
+
+}
+
 
 function loadAlphabet() {
-  for (var i = 0; i < alphabet.length; i++) {
+  for (var z = 0; z < alphabet.length; z++) {
     var letterButtons = document.createElement("button");
-    letterButtons.innerHTML = alphabet[i];
+    letterButtons.innerHTML = alphabet[z];
     document.body.appendChild(letterButtons);
-    console.log("created buttons");
+
+    // console.log(alphabet[z]);
+    letterButtons.addEventListener("click", function() {
+
+      console.log(alphabet[z]);
+
+    });
   }
 }
 
@@ -21,8 +46,10 @@ function guessLetter() {
   console.log(numGuesses);
   if (numGuesses > 7) {
     console.log("Game over");
-    numGuesses = 0;
   }
+
+  if (guessWord.value === currentWord)
+    console.log("winner");
 
 }
 
