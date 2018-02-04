@@ -1,11 +1,11 @@
 var wordDisplay = document.getElementById("wordDisplay");
 var keyboardDisplay = document.getElementById("keyboardDisplay");
 var guessWord = document.getElementById("guessWord");
-var submitLetter = document.getElementById("submitLetter");
+var guessButton = document.getElementById("guessButton");
 
 var numGuesses = 0;
 
-var wordBank = ["mouse", "software", "computer", "hardware", "keyboard", "battery", "screen", "desktop", "display", "program"];
+var wordBank = ["mouse", "software", "computer", "python", "keyboard", "code", "client", "desktop", "display", "program"];
 
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
@@ -32,23 +32,26 @@ function loadAlphabet() {
 
     letterButtons.addEventListener("click", function() {
 
-      numGuesses++;
-      if (numGuesses > 7) {
-        alert("Game over");
-      }
-
       if (currentWord.indexOf(this.innerHTML) > -1) {
 
         var letterPosition = currentWord.indexOf(this.innerHTML);
         console.log(letterPosition);
 
-        // think this through
-        //blanks[letterPosition].replace(currentWord[letterPosition], this.innerHTML)
-
-        currentWord[letterPosition] = this.innerHTML;
+        // Replaces the blank with the letter you clicked
         blanks[letterPosition] = this.innerHTML;
-
         wordDisplay.innerHTML = blanks.join(" ");
+
+        // If all blanks are uncovered, you win
+        
+
+      } else {
+        numGuesses++;
+        console.log("Total guesses: " + numGuesses);
+        if (numGuesses > 7) {
+          alert("Game over");
+          // Restarts the game if you lose
+          location.reload();
+        }
       }
 
       console.log(this.innerHTML);
@@ -59,14 +62,20 @@ function loadAlphabet() {
 
 function guessLetter() {
   numGuesses++;
-  console.log(numGuesses);
+  console.log("Total guesses: "+numGuesses);
   if (numGuesses > 7) {
-    console.log("Game over");
+    alert("Game over");
+    location.reload();
   }
 
   if (guessWord.value === currentWord)
-    alert("winner");
+    alert("You win!");
 
 }
 
-submitLetter.addEventListener("click", guessLetter);
+guessButton.addEventListener("click", guessLetter);
+guessWord.addEventListener("keyup", function(ev){
+  if(ev.keyCode === 13){
+    guessLetter();
+  }
+});
