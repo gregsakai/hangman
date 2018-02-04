@@ -1,4 +1,5 @@
 var wordDisplay = document.getElementById("wordDisplay");
+var keyboardDisplay = document.getElementById("keyboardDisplay");
 var guessWord = document.getElementById("guessWord");
 var submitLetter = document.getElementById("submitLetter");
 
@@ -13,25 +14,23 @@ var blanks = [];
 var currentWord = wordBank[Math.floor(Math.random() * 10)];
 console.log(currentWord);
 
+// Loops through the selected word
 for (var i = 0; i < currentWord.length; i++) {
 
   blanks.push("_ ");
   blanks.join(" ");
-  wordDisplay.innerHTML = blanks.join(" ");
-  // var blanks = currentWord.replace(currentWord[i], "_ ");
-  //
-  // wordDisplay.innerHTML = blanks;
+  wordDisplay.innerHTML = "subject: technology<br/>" + blanks.join(" ");
 
 }
 
-
+// Creates an array of buttons for the alphabet
 function loadAlphabet() {
   for (var z = 0; z < alphabet.length; z++) {
     var letterButtons = document.createElement("button");
     letterButtons.innerHTML = alphabet[z];
-    document.body.appendChild(letterButtons);
+    keyboardDisplay.appendChild(letterButtons);
 
-    // console.log(alphabet[z]);
+
     letterButtons.addEventListener("click", function() {
 
 
@@ -49,7 +48,7 @@ function guessLetter() {
   }
 
   if (guessWord.value === currentWord)
-    console.log("winner");
+    alert("winner");
 
 }
 
