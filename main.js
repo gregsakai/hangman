@@ -8,20 +8,19 @@ var wordBank = ["mouse", "software", "computer", "hardware", "keyboard", "batter
 
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
+var blanks = [];
 
 var currentWord = wordBank[Math.floor(Math.random() * 10)];
 console.log(currentWord);
 
 for (var i = 0; i < currentWord.length; i++) {
 
-
-  var blanks = currentWord.replace(currentWord[i], "_ ");
-
-
-  wordDisplay.innerHTML = blanks;
-
-
-
+  blanks.push("_ ");
+  blanks.join(" ");
+  wordDisplay.innerHTML = blanks.join(" ");
+  // var blanks = currentWord.replace(currentWord[i], "_ ");
+  //
+  // wordDisplay.innerHTML = blanks;
 
 }
 
@@ -35,7 +34,8 @@ function loadAlphabet() {
     // console.log(alphabet[z]);
     letterButtons.addEventListener("click", function() {
 
-      console.log(alphabet[z]);
+
+      console.log(this.innerHTML);
 
     });
   }
