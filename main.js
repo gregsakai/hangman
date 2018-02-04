@@ -5,21 +5,17 @@ var guessButton = document.getElementById("guessButton");
 
 var numGuesses = 0;
 
-var wordBank = ["mouse", "software", "computer", "python", "keyboard", "code", "client", "desktop", "display", "program"];
-
+var wordBank = ["mouse", "software", "computer", "python", "keyboard", "code", "client", "desktop", "display", "html"];
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
 var blanks = [];
 
-var currentWord = wordBank[Math.floor(Math.random() * 10)];
+var currentWord = wordBank[Math.floor(Math.random() * wordBank.length)];
 console.log(currentWord);
 
 // Loops through the selected word
 for (var i = 0; i < currentWord.length; i++) {
-
   blanks.push("_");
   wordDisplay.innerHTML = blanks.join(" ");
-
 }
 
 // Creates an array of buttons for the alphabet
@@ -41,8 +37,10 @@ function loadAlphabet() {
         wordDisplay.innerHTML = blanks.join(" ");
 
         // If all blanks are uncovered, you win
-        if (wordDisplay.innerHTML === currentWord.split("").join(" "))
-          alert("You win!");
+        if (wordDisplay.innerHTML === currentWord.split("").join(" ")){
+            alert("You win!");
+            location.reload();
+        }
 
       } else {
         numGuesses++;
@@ -59,7 +57,8 @@ function loadAlphabet() {
   }
 }
 
-function guessLetter() {
+// Guess the answer based on your text input
+function guessAnswer() {
   numGuesses++;
   console.log("Total guesses: " + numGuesses);
   if (numGuesses > 7) {
@@ -67,14 +66,15 @@ function guessLetter() {
     location.reload();
   }
 
-  if (guessWord.value === currentWord)
+  if (guessWord.value === currentWord){
     alert("You win!");
+    location.reload();
+  }
 
 }
 
-guessButton.addEventListener("click", guessLetter);
+guessButton.addEventListener("click", guessAnswer);
 guessWord.addEventListener("keyup", function(ev) {
-  if (ev.keyCode === 13) {
-    guessLetter();
-  }
+  if (ev.keyCode === 13)
+    guessAnswer();
 });
