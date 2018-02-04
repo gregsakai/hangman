@@ -35,18 +35,19 @@ function loadAlphabet() {
       if (currentWord.indexOf(this.innerHTML) > -1) {
 
         var letterPosition = currentWord.indexOf(this.innerHTML);
-        console.log(letterPosition);
 
         // Replaces the blank with the letter you clicked
         blanks[letterPosition] = this.innerHTML;
         wordDisplay.innerHTML = blanks.join(" ");
 
         // If all blanks are uncovered, you win
-        
+        if (wordDisplay.innerHTML === currentWord.split("").join(" "))
+          alert("You win!");
 
       } else {
         numGuesses++;
-        console.log("Total guesses: " + numGuesses);
+        console.log("Wrong letter: " + this.innerHTML);
+        console.log("Wrong guesses: " + numGuesses);
         if (numGuesses > 7) {
           alert("Game over");
           // Restarts the game if you lose
@@ -54,15 +55,13 @@ function loadAlphabet() {
         }
       }
 
-      console.log(this.innerHTML);
-
     });
   }
 }
 
 function guessLetter() {
   numGuesses++;
-  console.log("Total guesses: "+numGuesses);
+  console.log("Total guesses: " + numGuesses);
   if (numGuesses > 7) {
     alert("Game over");
     location.reload();
@@ -74,8 +73,8 @@ function guessLetter() {
 }
 
 guessButton.addEventListener("click", guessLetter);
-guessWord.addEventListener("keyup", function(ev){
-  if(ev.keyCode === 13){
+guessWord.addEventListener("keyup", function(ev) {
+  if (ev.keyCode === 13) {
     guessLetter();
   }
 });
