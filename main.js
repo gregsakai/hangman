@@ -17,9 +17,8 @@ console.log(currentWord);
 // Loops through the selected word
 for (var i = 0; i < currentWord.length; i++) {
 
-  blanks.push("_ ");
-  blanks.join(" ");
-  wordDisplay.innerHTML = "subject: technology<br/>" + blanks.join(" ");
+  blanks.push("_");
+  wordDisplay.innerHTML = blanks.join(" ");
 
 }
 
@@ -33,6 +32,24 @@ function loadAlphabet() {
 
     letterButtons.addEventListener("click", function() {
 
+      numGuesses++;
+      if (numGuesses > 7) {
+        alert("Game over");
+      }
+
+      if (currentWord.indexOf(this.innerHTML) > -1) {
+
+        var letterPosition = currentWord.indexOf(this.innerHTML);
+        console.log(letterPosition);
+
+        // think this through
+        //blanks[letterPosition].replace(currentWord[letterPosition], this.innerHTML)
+
+        currentWord[letterPosition] = this.innerHTML;
+        blanks[letterPosition] = this.innerHTML;
+
+        wordDisplay.innerHTML = blanks.join(" ");
+      }
 
       console.log(this.innerHTML);
 
