@@ -2,3 +2,26 @@
   font-size: 36px;
   font-family: 'Quicksand', sans-serif;
 }
+
+.letterButtons {
+  width: 65px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  border: 2px solid black;
+  background-color: #c4c3be;
+}
+
+#guessWord {
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid black;
+  color: black;
+  padding: 10px auto;
+}
+
+#guessButton {
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #d6ceb3;
+}

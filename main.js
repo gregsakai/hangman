@@ -22,11 +22,13 @@ for (var i = 0; i < currentWord.length; i++) {
 function loadAlphabet() {
   for (var z = 0; z < alphabet.length; z++) {
     var letterButtons = document.createElement("button");
+    letterButtons.className = "letterButtons";
     letterButtons.innerHTML = alphabet[z];
     keyboardDisplay.appendChild(letterButtons);
 
 
     letterButtons.addEventListener("click", function() {
+      this.style.backgroundColor = "#5e5e5d";
 
       if (currentWord.indexOf(this.innerHTML) > -1) {
 
