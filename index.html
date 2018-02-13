@@ -10,10 +10,10 @@
   </head>
   <body onload="loadAlphabet()">
 
-    <div class="container text-center">
+    <div class="container text-center" id="cont">
 
       <h1>subject: technology</h1>
-      <div id="wordDisplay"></div>
+      <div id="wordDisplay">generating word...</div>
       <br/>
 
       <div id="keyboardDisplay"></div>
@@ -22,6 +22,11 @@
       <input type="text" placeholder="Guess the word" id="guessWord" />
       <br/><br/>
       <button id="guessButton">Guess</button>
+
+      <div id="youWin">
+        <p>You Win!</p>
+        <button id="playAgain">Play Again</button>
+      </div>
 
     </div>
 
