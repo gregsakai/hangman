@@ -2,6 +2,8 @@ var wordDisplay = document.getElementById("wordDisplay");
 var keyboardDisplay = document.getElementById("keyboardDisplay");
 var guessWord = document.getElementById("guessWord");
 var guessButton = document.getElementById("guessButton");
+var restartButton = document.getElementById("restartButton");
+var livesRemaining = document.getElementById("livesRemaining");
 
 var numGuesses = 0;
 
@@ -26,6 +28,8 @@ function loadAlphabet() {
     letterButtons.innerHTML = alphabet[z];
     keyboardDisplay.appendChild(letterButtons);
 
+    livesRemaining.innerHTML = "You have " + (7-numGuesses) + " lives remaining";
+
     letterButtons.addEventListener("click", function() {
 
       if (currentWord.indexOf(this.innerHTML) > -1) {
@@ -39,8 +43,8 @@ function loadAlphabet() {
 
         // If all blanks are uncovered, you win
         if (wordDisplay.innerHTML === currentWord.split("").join(" ")){
-          alert("You win!");
-          location.reload();
+          livesRemaining.innerHTML = "You win!";
+          restartButton.innerHTML = "Play again";
         }
 
       } else {
@@ -48,6 +52,7 @@ function loadAlphabet() {
         numGuesses++;
         console.log("Wrong letter: " + this.innerHTML);
         console.log("Wrong guesses: " + numGuesses);
+        livesRemaining.innerHTML = "You have " + (7-numGuesses) + " lives remaining";
         if (numGuesses > 7) {
           alert("Game over");
           // Restarts the game if you lose
@@ -59,6 +64,11 @@ function loadAlphabet() {
   }
 }
 
+// Restart button loads new game
+restartButton.addEventListener("click", function(){
+  location.reload();
+});
+
 // Guess the answer based on your text input
 function guessAnswer() {
   numGuesses++;
@@ -69,7 +79,8 @@ function guessAnswer() {
   }
 
   if (guessWord.value === currentWord){
-    alert("You win!");
+    livesRemaining.innerHTML = "You win!";
+    restartButton.innerHTML = "Play again";
     location.reload();
   }
 
