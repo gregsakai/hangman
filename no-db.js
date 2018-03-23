@@ -48,12 +48,14 @@ function loadAlphabet() {
         }
 
       } else {
+        this.disabled = "true";
         this.style.backgroundColor = "#c43a17";
         numGuesses++;
         console.log("Wrong letter: " + this.innerHTML);
         console.log("Wrong guesses: " + numGuesses);
         livesRemaining.innerHTML = "You have " + (7-numGuesses) + " lives remaining";
         if (numGuesses > 7) {
+          livesRemaining.innerHTML = "You ran out of lives!";
           alert("Game over");
           // Restarts the game if you lose
           location.reload();
